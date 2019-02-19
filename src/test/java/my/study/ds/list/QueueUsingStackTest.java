@@ -9,7 +9,7 @@ import my.study.ds.list.stack.geekforgeek.solutions.QueueUsingStack;
 public class QueueUsingStackTest {
 
 	@Test
-	public void test() {
+	public void test() throws StackOverFLowException, StackEmptyException {
 		QueueUsingStack queue = new QueueUsingStack(5);
 		
         System.out.println("----This is a test to showcase the implementation of Queue using 2 stacks..----");
@@ -21,16 +21,17 @@ public class QueueUsingStackTest {
 		queue.enQueue(3);
 		
 		System.out.print("State of queue: ");
-		queue.printqueue();
+		queue.printQueue();
+		
 		System.out.println();
 				
 		System.out.println("Popping off 2 elements from the queue.");		
 		
-		queue.pop();
-		queue.pop();
+		queue.deQueue();
+		queue.deQueue();
 				
-		System.out.println("State of queue: ");		
-		queue.printqueue();
+		System.out.println("State of queue: ");
+		queue.printQueue();
 	
 	}
 

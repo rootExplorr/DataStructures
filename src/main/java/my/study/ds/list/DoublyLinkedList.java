@@ -49,5 +49,25 @@ public class DoublyLinkedList {
 	public DoublePointerNode FRONT() {
 		return FRONT;
 	}
+
+	public DoublePointerNode delete(DoublePointerNode temp) {
+		DoublePointerNode node = temp.getPrevious();		
+		temp.getNext().setPrevious(node);
+		
+		if(HEAD()==temp)
+			this.HEAD = temp.getNext();
+		else node.setNext(temp.getNext());
+		
+		return node;
+	}
+	
+	public void print() {
+		DoublePointerNode node = HEAD();
+		while(node.getNext()!=null) {
+			System.out.print(node.getData()+",");
+			node=node.getNext();
+		}
+		System.out.print(node.getData());
+	}
 	
 }

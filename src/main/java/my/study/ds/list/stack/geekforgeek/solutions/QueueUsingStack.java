@@ -61,16 +61,13 @@ public class QueueUsingStack {
 		
 		//Keeping the deleted element.
 		deletedElement = deleteStack.pop();
-		
-		
-		Stack temp = insertStack;
-		insertStack = deleteStack;
-		deleteStack = temp;		
 
 		return deletedElement;
 	}
 	
 	public void printQueue() {
-		
+		for (int i = deleteStack.TOP(); i >0; i--) {
+			//System.out.print(deleteStack.);
+		}
 	}
 }

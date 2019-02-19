@@ -1,11 +1,11 @@
 package my.study.ds.list;
 
-public class Queue {
+public class DeQueue {
 	private int[] queue;
 	private int HEAD=-1;
 	private int TAIL=-1;
 	
-	public Queue(int size) {
+	public DeQueue(int size) {
 		// TODO Auto-generated constructor stub
 		queue = new int[size];
 	}
@@ -21,7 +21,7 @@ public class Queue {
 		else return false;
 	}
 	
-	public boolean enqueue(int element) {		
+	public boolean insertFront(int element) {		
 		if(isFUll())
 			{
 			  System.err.println("Queue is full.");
@@ -29,17 +29,27 @@ public class Queue {
 			}
 		
 		if(isEmpty())
-			HEAD++;
-		
-		if((TAIL+1)%queue.length==0)
-			TAIL = 0;
-		else TAIL++;
-		
-		queue[TAIL]=element;
+			HEAD=TAIL=0;
+		if(HEAD == 0)
+			HEAD = queue.length-1;
+		queue[HEAD]=element;	
 		return true;
 	}
 	
-	public int deQueue() {
+	public void insertRear(int element) throws QueueOverFlowException {
+		if(isFUll())
+			throw new QueueOverFlowException();
+		
+		if(isEmpty())
+			HEAD=TAIL=0;
+		
+		if(TAIL==queue.length-1)
+		    TAIL = 0;
+		
+		queue[TAIL] = element;		
+	}
+	
+	public int removeRear() {
 		int poppedELement=queue[HEAD];
 		queue[HEAD]=0;
 		
@@ -54,7 +64,7 @@ public class Queue {
 		
 		return poppedELement;
 	}
-	
+		
 	public int HEAD() {
 		return HEAD;
 	}
@@ -64,13 +74,10 @@ public class Queue {
 	}
 	
 	public void printQueue() {
-		int i=HEAD;
-		while(i!=TAIL) {
-			if((i)%queue.length == 0)
-				i=0;
-			  System.out.print(queue[i++]);
+		int i=0;
+		while(i<=TAIL) {
+			System.out.print(queue[i++]);
 		}
-		System.out.print(queue[i]);
 	}
 	public String toString() {
 		String queue="";
@@ -78,15 +85,5 @@ public class Queue {
 			queue+=this.queue[i]+",";
 		}
 		return queue.substring(0,queue.length()-1);
-	}
-	
-	public int size() {
-		int i=HEAD,count=0;
-		while(i++!=TAIL) {
-			if((i)%queue.length == 0)
-				i=0;
-			count++;
-		}
-		return count;
 	}
 }

@@ -41,4 +41,8 @@ public class LinkedList {
 	    traveller.setNext(null);
 	    return deleted.getData();
   }
+	
+	public Node HEAD() {
+		return HEAD;
+	}
 }
